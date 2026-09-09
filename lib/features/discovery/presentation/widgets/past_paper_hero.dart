@@ -49,6 +49,20 @@ class PastPaperHero extends StatelessWidget {
               height: heroHeight,
               child: Stack(
                 children: [
+                  // Match the shadow to the visible paper, excluding SVG margins.
+                  Positioned(
+                    left: heroWidth * 22 / 424,
+                    top: heroHeight * 15 / 474,
+                    width: heroWidth * 380 / 424,
+                    height: heroHeight * 430 / 474,
+                    child: Card(
+                      margin: EdgeInsets.zero,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(heroWidth * 20 / 424),
+                      ),
+                      child: const SizedBox.expand(),
+                    ),
+                  ),
                   Positioned.fill(
                     child: SvgPicture.asset(
                       _assetPath,
@@ -214,7 +228,7 @@ class _ProgressOverlay extends StatelessWidget {
                     '$percentage%',
                     maxLines: 1,
                     style: const TextStyle(
-                      color: AppColors.primary,
+                      color: AppColors.mutedInk,
                       fontSize: 13,
                       fontWeight: FontWeight.w700,
                     ),
@@ -235,7 +249,7 @@ class _ProgressOverlay extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                      color: AppColors.ink,
+                      color: AppColors.mutedInk,
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
                     ),
@@ -245,8 +259,8 @@ class _ProgressOverlay extends StatelessWidget {
                     value: value,
                     minHeight: 5,
                     borderRadius: BorderRadius.circular(6),
-                    color: AppColors.primary,
-                    backgroundColor: AppColors.border,
+                    color: AppColors.success,
+                    backgroundColor: AppColors.softGreen,
                   ),
                 ],
               ),

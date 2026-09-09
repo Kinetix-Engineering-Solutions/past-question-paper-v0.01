@@ -253,7 +253,7 @@ class _DiscoveryContentState extends ConsumerState<_DiscoveryContent> {
                     crossAxisCount: columnCount,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
-                    mainAxisExtent: 196,
+                    mainAxisExtent: 172,
                   ),
                   itemBuilder: (context, index) {
                     final topic = sortedTopics[index];
@@ -309,17 +309,55 @@ class _SubjectSelector extends StatelessWidget {
       child: Row(
         children: [
           for (var index = 0; index < subjects.length; index++) ...[
-            ChoiceChip(
-              label: Text(subjects[index].name),
+            Semantics(
+              button: true,
               selected: subjects[index].id == selectedId,
-              onSelected: (_) => onSelected(subjects[index].id),
-              showCheckmark: false,
-              selectedColor: AppColors.brandPeriwinkle.withValues(alpha: 0.22),
-              side: const BorderSide(color: AppColors.border),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: () => onSelected(subjects[index].id),
+                  borderRadius: BorderRadius.circular(4),
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      Container(
+                        constraints: const BoxConstraints(
+                          minWidth: 48,
+                          minHeight: 48,
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 14,
+                        ),
+                        child: Text(
+                          subjects[index].name,
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(
+                                color: subjects[index].id == selectedId
+                                    ? AppColors.ink
+                                    : AppColors.mutedInk,
+                                fontWeight: subjects[index].id == selectedId
+                                    ? FontWeight.w700
+                                    : FontWeight.w500,
+                              ),
+                        ),
+                      ),
+                      if (subjects[index].id == selectedId)
+                        Positioned(
+                          bottom: 0,
+                          child: Container(
+                            width: 28,
+                            height: 3,
+                            decoration: BoxDecoration(
+                              color: AppColors.ink,
+                              borderRadius: BorderRadius.circular(2),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
             ),
             if (index != subjects.length - 1) const SizedBox(width: 8),
           ],
@@ -364,26 +402,18 @@ class _ContinueCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 12),
-              LinearProgressIndicator(
-                value: progress.reviewCoverage,
-                minHeight: 7,
-                borderRadius: BorderRadius.circular(8),
-                color: AppColors.primary,
-                backgroundColor: AppColors.border,
-              ),
-              const SizedBox(height: 12),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
                     'Continue',
                     style: TextStyle(
-                      color: AppColors.primary,
+                      color: AppColors.mutedInk,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                   SizedBox(width: 4),
-                  Icon(Icons.arrow_forward, color: AppColors.primary, size: 20),
+                  Icon(Icons.arrow_forward, color: AppColors.mutedInk, size: 20),
                 ],
               ),
             ],

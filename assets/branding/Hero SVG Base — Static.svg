@@ -1,11 +1,10 @@
 <svg width="424" height="474" viewBox="0 0 424 474" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Hero SVG Base &#226;&#128;&#148; Static" filter="url(#filter0_d_5_2)">
-<rect x="22" y="15" width="380" height="430" rx="20" fill="#FFFDF8"/>
-<rect x="22.5" y="15.5" width="379" height="429" rx="19.5" stroke="#E5E7EB"/>
-<text id="Brand" fill="#1D2A3A" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" font-weight="bold" letter-spacing="0em"><tspan x="147" y="60.2727">PAST PAPERS</tspan></text>
-<text id="Subtitle" fill="#6B7280" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="10" font-weight="600" letter-spacing="0em"><tspan x="148" y="79.6364">GRADE 12 EXAM PRACTICE</tspan></text>
+<g id="Hero SVG Base &#226;&#128;&#148; Static">
+<rect x="22" y="15" width="380" height="430" rx="20" fill="#FFFFFF"/>
+<text id="Brand" fill="#0F2340" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="20" font-weight="bold" letter-spacing="0em"><tspan x="147" y="60.2727">PAST PAPERS</tspan></text>
+<text id="Subtitle" fill="#5F6877" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="10" font-weight="600" letter-spacing="0em"><tspan x="148" y="79.6364">GRADE 12 EXAM PRACTICE</tspan></text>
 <g id="Exam header bar">
-<rect x="55" y="107" width="314" height="38" rx="6" fill="#232323"/>
+<rect x="55" y="107" width="314" height="38" rx="6" fill="#0F2340"/>
 </g>
 <text id="Exam header" fill="white" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="13" font-weight="600" letter-spacing="0em"><tspan x="112" y="131.727">NATIONAL SENIOR CERTIFICATE</tspan></text>
 <g id="Grade badge">
@@ -14,13 +13,13 @@
 <text id="Grade 12" fill="#2E6740" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="11" font-weight="bold" letter-spacing="0em"><tspan x="185" y="176.5">GRADE 12</tspan></text>
 </g>
 <g id="Paper title">
-<rect x="70.75" y="205.75" width="282.5" height="44.5" rx="7.25" stroke="#4D6FB4" stroke-width="1.5"/>
-<text id="Paper title text" fill="#243B64" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="14" font-weight="bold" letter-spacing="0em"><tspan x="117.5" y="233.091">PAST EXAMINATION PAPER</tspan></text>
+<rect x="70.75" y="205.75" width="282.5" height="44.5" rx="7.25" stroke="#31507A" stroke-width="1.5"/>
+<text id="Paper title text" fill="#0F2340" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="14" font-weight="bold" letter-spacing="0em"><tspan x="117.5" y="233.091">PAST EXAMINATION PAPER</tspan></text>
 </g>
-<text id="Learner label" fill="#1F2937" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="10" font-weight="600" letter-spacing="0em"><tspan x="170" y="290.636">LEARNER NAME</tspan></text>
+<text id="Learner label" fill="#5F6877" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="10" font-weight="600" letter-spacing="0em"><tspan x="170" y="290.636">LEARNER NAME</tspan></text>
 <line id="Line" x1="112" y1="341.5" x2="312" y2="341.5" stroke="#9CA3AF"/>
 <line id="Line_2" x1="60" y1="364.5" x2="364" y2="364.5" stroke="#AAB1BA" stroke-dasharray="4 4"/>
-<text id="Motivation" fill="#222222" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="11" font-weight="600" letter-spacing="0em"><tspan x="155" y="390.5">Keep going! You&#39;re making progress.</tspan></text>
+<text id="Motivation" fill="#5F6877" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="11" font-weight="600" letter-spacing="0em"><tspan x="155" y="390.5">Keep going! You&#39;re making progress.</tspan></text>
 <circle id="Progress ring" cx="125" cy="402" r="25.5" stroke="#D9DBDE" stroke-width="7"/>
 </g>
 <defs>

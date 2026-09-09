@@ -2,23 +2,28 @@ import 'package:flutter/material.dart';
 
 abstract final class AppColors {
   // Neutral paper foundation
-  static const ink = Color(0xFF262626);
-  static const mutedInk = Color(0xFF717175);
+  static const ink = Color(0xFF0F2340);
+  static const mutedInk = Color(0xFF5F6877);
 
-  static const paper = Color(0xFFF0F0ED);
-  static const neutralCard = Color(0xFFFAFAF8);
-  static const border = Color(0xFFDDDDD8);
+  static const paper = Color(0xFFFFFDF8);
+  static const neutralCard = Color(0xFFFFFFFF);
+  static const border = Color(0xFFE4E7EC);
+  static const softBlue = Color(0xFFDDE7FA);
+  static const iconTile = Color(0xFFE8EEF7);
+  static const topicIcon = Color(0xFF31507A);
+  static const softGreen = Color(0xFFE6F3EA);
 
   // Logo colours
   static const brandCyan = Color(0xFF29A9DC);
   static const brandPink = Color(0xFFED0A8C);
   static const brandPeriwinkle = Color(0xFF7391CF);
 
-  // Darkened brand periwinkle for accessible buttons and active states
-  static const primary = Color(0xFF526CA6);
+  // Navy primary actions and blue accents
+  static const primary = Color(0xFF0F2340);
+  static const secondary = Color(0xFF3157B3);
 
   // Semantic colours
-  static const success = Color(0xFF228B5A);
+  static const success = Color(0xFF34A66F);
   static const error = Color(0xFFBA1A1A);
 }
 
@@ -28,14 +33,23 @@ abstract final class AppTheme {
       brightness: Brightness.light,
       primary: AppColors.primary,
       onPrimary: Colors.white,
-      secondary: AppColors.brandPeriwinkle,
-      onSecondary: AppColors.ink,
-      tertiary: AppColors.brandPink,
-      onTertiary: Colors.white,
+      primaryContainer: AppColors.softBlue,
+      onPrimaryContainer: AppColors.ink,
+      secondary: AppColors.secondary,
+      onSecondary: Colors.white,
+      secondaryContainer: AppColors.softBlue,
+      onSecondaryContainer: AppColors.ink,
+      tertiary: AppColors.success,
+      onTertiary: AppColors.ink,
+      tertiaryContainer: AppColors.softGreen,
+      onTertiaryContainer: AppColors.ink,
       error: AppColors.error,
       onError: Colors.white,
       surface: AppColors.neutralCard,
       onSurface: AppColors.ink,
+      onSurfaceVariant: AppColors.mutedInk,
+      outline: AppColors.border,
+      outlineVariant: AppColors.border,
     );
 
     const textTheme = TextTheme(
@@ -105,21 +119,21 @@ abstract final class AppTheme {
       bodyLarge: TextStyle(
         fontSize: 13,
         height: 1.5,
-        fontWeight: FontWeight.w300,
+        fontWeight: FontWeight.w400,
         letterSpacing: 0.5,
         color: AppColors.mutedInk,
       ),
       bodyMedium: TextStyle(
         fontSize: 12,
         height: 1.45,
-        fontWeight: FontWeight.w300,
+        fontWeight: FontWeight.w400,
         letterSpacing: 0.5,
         color: AppColors.mutedInk,
       ),
       bodySmall: TextStyle(
         fontSize: 10,
         height: 1.4,
-        fontWeight: FontWeight.w300,
+        fontWeight: FontWeight.w400,
         letterSpacing: 0.5,
         color: AppColors.mutedInk,
       ),
@@ -172,11 +186,12 @@ abstract final class AppTheme {
 
       cardTheme: CardThemeData(
         color: AppColors.neutralCard,
-        elevation: 0,
+        elevation: 3,
+        shadowColor: AppColors.ink.withValues(alpha: 0.18),
+        surfaceTintColor: Colors.transparent,
         margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
-          side: const BorderSide(color: AppColors.border),
         ),
       ),
 
@@ -279,8 +294,8 @@ abstract final class AppTheme {
       ),
 
       progressIndicatorTheme: const ProgressIndicatorThemeData(
-        color: AppColors.brandPeriwinkle,
-        linearTrackColor: AppColors.border,
+        color: AppColors.success,
+        linearTrackColor: AppColors.softGreen,
       ),
 
       bottomSheetTheme: const BottomSheetThemeData(

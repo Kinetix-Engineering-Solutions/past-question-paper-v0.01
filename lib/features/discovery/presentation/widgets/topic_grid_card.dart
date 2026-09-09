@@ -87,13 +87,12 @@ class TopicGridCard extends StatelessWidget {
         color: AppColors.neutralCard,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
-          side: const BorderSide(color: AppColors.border),
         ),
         child: InkWell(
           borderRadius: BorderRadius.circular(16),
           onTap: isAvailable ? onTap : null,
           child: Padding(
-            padding: const EdgeInsets.all(14),
+            padding: const EdgeInsets.fromLTRB(14, 14, 14, 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -102,39 +101,42 @@ class TopicGridCard extends StatelessWidget {
                   height: 46,
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: AppColors.brandPeriwinkle.withValues(alpha: 0.12),
+                    color: AppColors.iconTile,
                     borderRadius: BorderRadius.circular(13),
                   ),
                   child: iconAsset == null
                       ? const Icon(
                           Icons.menu_book_outlined,
-                          color: AppColors.primary,
+                          color: AppColors.topicIcon,
                           size: 25,
                         )
                       : SvgPicture.asset(
                           iconAsset,
                           colorFilter: const ColorFilter.mode(
-                            AppColors.primary,
+                            AppColors.topicIcon,
                             BlendMode.srcIn,
                           ),
                         ),
                 ),
                 const SizedBox(height: 12),
-                Text(
-                  topic.name,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: isAvailable ? AppColors.ink : AppColors.mutedInk,
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      topic.name,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: isAvailable ? AppColors.ink : AppColors.mutedInk,
+                      ),
+                    ),
                   ),
                 ),
-                const Spacer(),
+                const SizedBox(height: 6),
                 Text(
                   isAvailable ? questionLabel : 'Coming soon',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: isAvailable
-                        ? AppColors.primary
-                        : AppColors.mutedInk,
+                    color: AppColors.mutedInk,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -152,7 +154,7 @@ class TopicGridCard extends StatelessWidget {
                     value: progress!.reviewCoverage,
                     minHeight: 4,
                     borderRadius: BorderRadius.circular(6),
-                    color: AppColors.brandPeriwinkle,
+                    color: AppColors.success,
                   ),
                 ],
               ],
