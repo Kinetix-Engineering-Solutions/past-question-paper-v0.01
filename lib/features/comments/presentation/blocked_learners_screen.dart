@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:past_question_paper_v1/shared/widgets/loading_skeleton.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../domain/blocked_learner.dart';
 import '../providers/blocked_learners_providers.dart';
@@ -13,7 +14,7 @@ class BlockedLearnersScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Blocked learners')),
       body: blockedLearners.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const LoadingSkeleton(),
         error: (error, stackTrace) => _LoadError(
           onRetry: () {
             ref.read(blockedLearnersControllerProvider.notifier).refresh();

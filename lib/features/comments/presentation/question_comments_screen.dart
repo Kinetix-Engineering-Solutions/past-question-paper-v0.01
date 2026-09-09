@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:past_question_paper_v1/shared/widgets/loading_skeleton.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:past_question_paper_v1/features/auth/domain/app_user.dart';
 import 'package:past_question_paper_v1/features/auth/presentation/auth_screen.dart';
@@ -61,7 +62,7 @@ class _QuestionCommentsScreenState
         title: Text('Question ${question.questionNumber} discussion'),
       ),
       body: comments.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const LoadingSkeleton(),
         error: (error, stackTrace) => Center(
           child: FilledButton.icon(
             onPressed: () {

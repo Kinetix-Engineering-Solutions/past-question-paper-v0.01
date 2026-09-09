@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:past_question_paper_v1/shared/widgets/loading_skeleton.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:past_question_paper_v1/features/questions/presentation/question_filter_dialog.dart';
 import '../../../core/network/api_exception.dart';
@@ -117,7 +118,7 @@ class _QuestionScreenState extends ConsumerState<QuestionScreen> {
         ],
       ),
       body: questions.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const LoadingSkeleton(layout: SkeletonLayout.question),
         error: (error, _) => _QuestionError(
           message: error is ApiException
               ? error.message

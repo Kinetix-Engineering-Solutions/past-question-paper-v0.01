@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:past_question_paper_v1/shared/widgets/loading_skeleton.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../auth/domain/app_user.dart';
@@ -18,7 +19,7 @@ class SavedQuestionsScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Saved questions')),
       body: questions.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const LoadingSkeleton(),
         error: (error, stackTrace) => _SavedError(
           onRetry: () {
             ref.invalidate(savedQuestionsProvider(user.id));

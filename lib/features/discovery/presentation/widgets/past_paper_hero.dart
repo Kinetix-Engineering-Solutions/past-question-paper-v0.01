@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/theme/app_theme.dart';
+import '../../../../shared/widgets/loading_skeleton.dart';
 
 class PastPaperHero extends StatelessWidget {
   const PastPaperHero({
@@ -12,6 +13,7 @@ class PastPaperHero extends StatelessWidget {
     required this.onInfoPressed,
     required this.onAccountPressed,
     required this.isSignedIn,
+    this.isProgressLoading = false,
     super.key,
   });
 
@@ -26,6 +28,7 @@ class PastPaperHero extends StatelessWidget {
   final VoidCallback onInfoPressed;
   final VoidCallback? onAccountPressed;
   final bool isSignedIn;
+  final bool isProgressLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +61,9 @@ class PastPaperHero extends StatelessWidget {
                     child: Card(
                       margin: EdgeInsets.zero,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(heroWidth * 20 / 424),
+                        borderRadius: BorderRadius.circular(
+                          heroWidth * 20 / 424,
+                        ),
                       ),
                       child: const SizedBox.expand(),
                     ),
@@ -98,6 +103,8 @@ class PastPaperHero extends StatelessWidget {
                     width: heroWidth * 0.76,
                     height: heroHeight * 0.15,
                     child: _ProgressOverlay(
+                      isSignedIn: isSignedIn,
+                      isLoading: isProgressLoading,
                       progress: progress,
                       reviewedQuestions: reviewedQuestions,
                       totalQuestions: totalQuestions,
@@ -173,6 +180,8 @@ class _HeroActionButton extends StatelessWidget {
 
 class _ProgressOverlay extends StatelessWidget {
   const _ProgressOverlay({
+    required this.isSignedIn,
+    required this.isLoading,
     required this.progress,
     required this.reviewedQuestions,
     required this.totalQuestions,
@@ -181,6 +190,8 @@ class _ProgressOverlay extends StatelessWidget {
   final double? progress;
   final int? reviewedQuestions;
   final int? totalQuestions;
+  final bool isSignedIn;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -190,19 +201,48 @@ class _ProgressOverlay extends StatelessWidget {
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (!hasProgressData) {
+        if (isLoading && !hasProgressData) {
+          return ShimmerLoading(
+            child: Stack(
+              children: [
+                Positioned(
+                  left: constraints.maxWidth * 0.16,
+                  top: constraints.maxHeight * 0.35,
+                  width: constraints.maxWidth * 0.14,
+                  child: const SkeletonBlock(height: 14),
+                ),
+                Positioned(
+                  left: constraints.maxWidth * 0.33,
+                  top: constraints.maxHeight * 0.43,
+                  width: constraints.maxWidth * 0.65,
+                  child: const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SkeletonBlock(height: 12),
+                      SizedBox(height: 6),
+                      SkeletonBlock(height: 5),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
+        if (!isSignedIn || !hasProgressData) {
           return Padding(
             padding: EdgeInsets.only(
               left: constraints.maxWidth * 0.33,
               top: constraints.maxHeight * 0.4,
             ),
-            child: const Align(
+            child: Align(
               alignment: Alignment.topLeft,
               child: Text(
-                'Sign in to track your progress',
+                isSignedIn
+                    ? 'Progress unavailable. Pull down to retry.'
+                    : 'Sign in to track your progress',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
+                style: const TextStyle(
                   color: AppColors.mutedInk,
                   fontSize: 11,
                   fontWeight: FontWeight.w600,

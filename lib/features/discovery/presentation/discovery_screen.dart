@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:past_question_paper_v1/shared/widgets/loading_skeleton.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:past_question_paper_v1/features/questions/presentation/question_screen.dart';
 
@@ -36,7 +37,8 @@ class DiscoveryScreen extends ConsumerWidget {
     return Scaffold(
       body: SafeArea(
         child: discovery.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () =>
+              const LoadingSkeleton(layout: SkeletonLayout.discovery),
           error: (error, _) => _DiscoveryError(
             message: _errorMessage(error),
             onRetry: () =>
@@ -60,6 +62,7 @@ class DiscoveryScreen extends ConsumerWidget {
               learnerName: learnerName,
               tracksProgress: currentUser != null,
               isSignedIn: currentUser != null,
+              isAuthLoading: authState.isLoading,
               onInfoPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute<void>(
@@ -102,6 +105,7 @@ class _DiscoveryContent extends ConsumerStatefulWidget {
     required this.learnerName,
     required this.tracksProgress,
     required this.isSignedIn,
+    required this.isAuthLoading,
     required this.onInfoPressed,
     required this.onAccountPressed,
   });
@@ -111,6 +115,7 @@ class _DiscoveryContent extends ConsumerStatefulWidget {
   final String? learnerName;
   final bool tracksProgress;
   final bool isSignedIn;
+  final bool isAuthLoading;
   final VoidCallback onInfoPressed;
   final VoidCallback? onAccountPressed;
 
@@ -176,8 +181,10 @@ class _DiscoveryContentState extends ConsumerState<_DiscoveryContent> {
       0,
       (total, topic) => total + topic.questionCount,
     );
-    final overallProgress = reviewedQuestions == null || totalQuestions == 0
+    final overallProgress = reviewedQuestions == null
         ? null
+        : totalQuestions == 0
+        ? 0.0
         : (reviewedQuestions / totalQuestions).clamp(0.0, 1.0).toDouble();
     final continueItem =
         (widget.progress.valueOrNull ?? const <TopicProgress>[])
@@ -204,6 +211,8 @@ class _DiscoveryContentState extends ConsumerState<_DiscoveryContent> {
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
         children: [
           PastPaperHero(
+            isProgressLoading:
+                widget.isAuthLoading || widget.progress.isLoading,
             learnerName: widget.learnerName,
             progress: widget.tracksProgress ? overallProgress : null,
             reviewedQuestions: widget.tracksProgress ? reviewedQuestions : null,
@@ -413,7 +422,11 @@ class _ContinueCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 4),
-                  Icon(Icons.arrow_forward, color: AppColors.mutedInk, size: 20),
+                  Icon(
+                    Icons.arrow_forward,
+                    color: AppColors.mutedInk,
+                    size: 20,
+                  ),
                 ],
               ),
             ],

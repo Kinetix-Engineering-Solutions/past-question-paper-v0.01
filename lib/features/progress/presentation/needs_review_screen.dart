@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:past_question_paper_v1/shared/widgets/loading_skeleton.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:past_question_paper_v1/features/progress/presentation/needs_review_detail_screen.dart';
 import '../../auth/domain/app_user.dart';
@@ -17,7 +18,7 @@ class NeedsReviewScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Needs review')),
       body: questions.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const LoadingSkeleton(),
         error: (error, stackTrace) => Center(
           child: FilledButton.icon(
             onPressed: () {

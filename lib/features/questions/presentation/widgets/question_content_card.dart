@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:past_question_paper_v1/shared/widgets/loading_skeleton.dart';
 
 import '../../data/models/question.dart';
 
@@ -56,9 +57,8 @@ class QuestionContentCard extends StatelessWidget {
                         return child;
                       }
 
-                      return const SizedBox(
-                        height: 200,
-                        child: Center(child: CircularProgressIndicator()),
+                      return const ShimmerLoading(
+                        child: SkeletonBlock(height: 200),
                       );
                     },
                     errorBuilder: (context, error, stackTrace) {
